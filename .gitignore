@@ -1,0 +1,6 @@
+.vs
+bin
+obj
+local.settings.json
+*.pubxml
+publish-profile-*

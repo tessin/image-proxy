@@ -16,16 +16,16 @@ The image proxy will request the image `https://tessin.se/static/images/hero.091
 
 ### OPTIONS
 
-parameter | required | type | range | default | description
---- |--- | --- |--- | --- |---
-`s` | yes | URI | absolute | - | absolute URI for source image, any source supported by the Windows Imaging Component (WIC) is supported here
-`c` | no | rect | x,y,w,h | 0,0,100,100 | crop rectangle in percent
-`w` | no | int | >=0 | 0 | desired pixel width, see remarks
-`h` | no | int | >=0 | 0 |  desired pixel height, see remarks
-`q` | no | int | 0-100 | 80 | desired image quality level
-`t` | no | enum | `jpg`, `webp` | `jpg` | desired image format
-`f` | no | enum | `none`, `min`, `max` | `max` | fitting strategy (when `w>=0&h>=0`), see remarks
-`bg-color` | no | color | #hhh, #hhhhhh | black | background color (when `f=min`), see remarks
+| parameter  | required | type  | range                | default     | description                                                                                                  |
+| ---------- | -------- | ----- | -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| `s`        | yes      | URI   | absolute             | -           | absolute URI for source image, any source supported by the Windows Imaging Component (WIC) is supported here |
+| `c`        | no       | rect  | x,y,w,h              | 0,0,100,100 | crop rectangle in percent                                                                                    |
+| `w`        | no       | int   | >=0                  | 0           | desired pixel width, see remarks                                                                             |
+| `h`        | no       | int   | >=0                  | 0           | desired pixel height, see remarks                                                                            |
+| `q`        | no       | int   | 0-100                | 80          | desired image quality level                                                                                  |
+| `t`        | no       | enum  | `jpg`, `webp`        | `jpg`       | desired image format                                                                                         |
+| `f`        | no       | enum  | `none`, `min`, `max` | `max`       | fitting strategy (when `w>=0&h>=0`), see remarks                                                             |
+| `bg-color` | no       | color | #hhh, #hhhhhh        | black       | background color (when `f=min`), see remarks                                                                 |
 
 #### REMARKS
 
@@ -33,12 +33,11 @@ When only pixel width or pixel height is specified the image is resized with res
 
 Cropping is applied before any other processing and is specified in percent. To crop the top left corner of the image you say `0,0,25,25` to crop the bottom right corner of the image you say `75,75,25,25`. The crop rectange is always in percentages of source image dimensions and cannot exceed 100% in any one dimension. Formally the crop rectange must respect the invariant `x<=100,y<=100,x+w<=100,y+h<=100`.
 
-
 ## JavaScript API
 
 [image-proxy.js]
 
-~~~
+```
 // @flow
 
 type ImageProxyOptions = {
@@ -88,4 +87,8 @@ export default function getImageProxyUrl(source: string, opts: ImageProxyOptions
 
   return s
 }
-~~~
+```
+
+## libwebp
+
+You can get the `libwebp` precompiled binaries [here](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html).

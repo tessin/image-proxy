@@ -52,7 +52,7 @@ namespace FunctionApp1
         public int PixelWidth;
         public int PixelHeight;
         public int Quality = 80;
-        public ImageType Type = ImageType.Jpg;
+        public ImageType Type = ImageType.None;
         public Int32Rect Crop;
         public FittingType Fit = FittingType.Max;
         public Color BackgroundColor = Colors.Black;

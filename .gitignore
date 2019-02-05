@@ -4,3 +4,7 @@ obj
 local.settings.json
 *.pubxml
 publish-profile-*
+
+libwebp-*
+
+image-proxy.zip

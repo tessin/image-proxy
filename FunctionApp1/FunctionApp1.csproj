@@ -3,15 +3,12 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="libwebp-0.6.0-windows-x64\bin\cwebp.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="libwebp-0.6.0-windows-x64\bin\cwebp.exe">
+    <Content Include="..\libwebp-1.0.2-windows-x64\bin\cwebp.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>    
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.2" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

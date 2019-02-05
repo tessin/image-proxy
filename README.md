@@ -23,7 +23,7 @@ The image proxy will request the image `https://tessin.se/static/images/hero.091
 | `w`        | no       | int   | >=0                  | 0           | desired pixel width, see remarks                                                                             |
 | `h`        | no       | int   | >=0                  | 0           | desired pixel height, see remarks                                                                            |
 | `q`        | no       | int   | 0-100                | 80          | desired image quality level                                                                                  |
-| `t`        | no       | enum  | `jpg`, `webp`        | `jpg`       | desired image format                                                                                         |
+| `t`        | no       | enum  | `jpg`, `webp`, `png`        | `none`       | desired image format                                                                                         |
 | `f`        | no       | enum  | `none`, `min`, `max` | `max`       | fitting strategy (when `w>=0&h>=0`), see remarks                                                             |
 | `bg-color` | no       | color | #hhh, #hhhhhh        | black       | background color (when `f=min`), see remarks                                                                 |
 
@@ -32,6 +32,8 @@ The image proxy will request the image `https://tessin.se/static/images/hero.091
 When only pixel width or pixel height is specified the image is resized with respect to the original aspect ratio. When both pixel width and pixel height the result depends on the `f` option. `none` will ignore the aspect ratio and just scale the image to fit the desired dimensions. `min` will scale the image to fit inside the desired dimensions. This will result in a border around the image. `max` (default) will scale the image to fit outside the desired dimensions this will result in the image covering the desired dimensions but parts of the image may be cropped.
 
 Cropping is applied before any other processing and is specified in percent. To crop the top left corner of the image you say `0,0,25,25` to crop the bottom right corner of the image you say `75,75,25,25`. The crop rectange is always in percentages of source image dimensions and cannot exceed 100% in any one dimension. Formally the crop rectange must respect the invariant `x<=100,y<=100,x+w<=100,y+h<=100`.
+
+The service will atempt to produce JPGs unless you ask for something else. The only exception to this is PNGs, if input is PNG and no target type is explicitly requested you get PNG back. The because PNGs with transparency would otherwise be destoryed when converted to JPG.
 
 ## JavaScript API
 

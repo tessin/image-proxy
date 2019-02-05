@@ -33,7 +33,7 @@ When only pixel width or pixel height is specified the image is resized with res
 
 Cropping is applied before any other processing and is specified in percent. To crop the top left corner of the image you say `0,0,25,25` to crop the bottom right corner of the image you say `75,75,25,25`. The crop rectange is always in percentages of source image dimensions and cannot exceed 100% in any one dimension. Formally the crop rectange must respect the invariant `x<=100,y<=100,x+w<=100,y+h<=100`.
 
-The service will atempt to produce JPGs unless you ask for something else. The only exception to this is PNGs, if input is PNG and no target type is explicitly requested you get PNG back. The because PNGs with transparency would otherwise be destoryed when converted to JPG.
+The service will atempt to produce JPGs unless you ask for something else. The only exception to this is PNGs, if input is PNG and no target type is explicitly requested you get PNG back. PNGs with transparency would otherwise be destoryed when converted to JPG.
 
 ## JavaScript API
 

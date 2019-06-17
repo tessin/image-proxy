@@ -22,7 +22,7 @@ namespace FunctionApp1
     {
         None,
         Min,
-        Max
+        Max,
     }
 
     enum ErrorCode
@@ -53,6 +53,10 @@ namespace FunctionApp1
         public int PixelHeight;
         public int Quality = 80;
         public ImageType Type = ImageType.None;
+        /// <summary>
+        /// Use the Azure Computer Vision API - if supported (configured)
+        /// </summary>
+        public bool CropSmart;
         public Int32Rect Crop;
         public FittingType Fit = FittingType.Max;
         public Color BackgroundColor = Colors.Black;
@@ -141,6 +145,11 @@ namespace FunctionApp1
                         Type = type;
                         break;
                     case "c":
+                        if (item.Value == "smart")
+                        {
+                            CropSmart = true;
+                            break;
+                        }
                         // the crop rectange is in percentages, 
                         // based on the source image dimension 
                         // we use this to get the actual crop

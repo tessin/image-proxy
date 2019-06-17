@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2AE9AFCD-347E-4BE3-ACDD-787793B294C7}"
 	ProjectSection(SolutionItems) = preProject
 		pre-deploy.cmd = pre-deploy.cmd
-		publish-profile-tessin-cdn-app-vfbxy3pcg5nwc.json = publish-profile-tessin-cdn-app-vfbxy3pcg5nwc.json
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -60,6 +60,7 @@ namespace FunctionApp1
         public Int32Rect Crop;
         public FittingType Fit = FittingType.Max;
         public Color BackgroundColor = Colors.Black;
+        public bool IsDebug;
 
         public static bool TryConvert<T>(string value, out T targetValue, T defaultValue = default(T))
         {
@@ -84,18 +85,18 @@ namespace FunctionApp1
                 switch (item.Key)
                 {
                     case "s":
+                    {
+                        var s = item.Value;
+                        if (s.StartsWith("//"))
                         {
-                            var s = item.Value;
-                            if (s.StartsWith("//"))
-                            {
-                                s = requestUri.Scheme + ":" + s;
-                            }
-                            if (!Uri.TryCreate(s, UriKind.Absolute, out Source))
-                            {
-                                return ErrorCode.SourceUriFormatError;
-                            }
+                            s = requestUri.Scheme + ":" + s;
                         }
-                        break;
+                        if (!Uri.TryCreate(s, UriKind.Absolute, out Source))
+                        {
+                            return ErrorCode.SourceUriFormatError;
+                        }
+                    }
+                    break;
                     case "q":
                         int quality;
                         if (!TryConvert(item.Value, out quality))
@@ -206,6 +207,11 @@ namespace FunctionApp1
                             return ErrorCode.BackgroundColorParseError;
                         }
                         break;
+                    case "debug":
+                    {
+                        IsDebug = item.Value == "1";
+                        break;
+                    }
                 }
             }
 

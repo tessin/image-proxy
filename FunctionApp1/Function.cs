@@ -103,7 +103,14 @@ namespace FunctionApp1
 
                 if (ps.CropSmart)
                 {
+                    // todo: fix smart cropping...
+                    // todo: use face rectangles to find a midpoint then resize the image preserving as much of the face rect as possible
+                    //
+                    // 
+
                     // Use the area of interest from the computer vision API to crop the image
+
+                    //var analysis = await ComputerVision.Analyze(bitmapSource);
 
                     var areaOfInterest = await ComputerVision.GetAreaOfInterestAsync(bitmapSource);
 
@@ -149,12 +156,20 @@ namespace FunctionApp1
                     // has to expand a lot, it may be placed outside the source
                     // need to adjust for that
 
-                    var cropRect = new Int32Rect(
-                        Math.Min(mx - w / 2, bitmapSource.PixelWidth - w),
-                        Math.Min(my - h / 2, bitmapSource.PixelHeight - h),
-                        w,
-                        h
-                    );
+                    var x = mx - w / 2;
+                    if (x < 0)
+                    {
+                        w = Math.Max(1, w + x);
+                        x = 0;
+                    }
+                    var y = my - h / 2;
+                    if (y < 0)
+                    {
+                        h = Math.Max(1, h + y);
+                        y = 0;
+                    }
+
+                    var cropRect = new Int32Rect(x, y, w, h);
 
                     bitmapSource = new CroppedBitmap(bitmapSource, cropRect);
                 }
